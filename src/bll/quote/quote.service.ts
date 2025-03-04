@@ -16,7 +16,7 @@ export class QuoteService {
     const expiresAt = new Date();
     expiresAt.setMinutes(expiresAt.getMinutes() + 5); // todo: Validar si se suman 5 min
 
-    const newQuote = new this.quoteModel({
+    const newQuote = await this.quoteModel.create({
       from,
       to,
       amount,
