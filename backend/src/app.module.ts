@@ -5,9 +5,18 @@ import { DatabaseModule } from './database/database.module';
 import { FacadeModule } from './facades/facade.module';
 import { QuoteController } from './controllers/quote.controller';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [DatabaseModule, FacadeModule, AuthModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+    DatabaseModule,
+    FacadeModule,
+    AuthModule,
+  ],
   controllers: [AppController, QuoteController],
   providers: [AppService],
 })
