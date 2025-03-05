@@ -14,7 +14,7 @@ export class QuoteService {
     const { from, to, amount } = createQuoteDto;
     const convertedAmount = amount * rate;
     const expiresAt = new Date();
-    expiresAt.setMinutes(expiresAt.getMinutes() + 5); // todo: Validar si se suman 5 min
+    expiresAt.setMinutes(expiresAt.getMinutes() + 5);
 
     const newQuote = await this.quoteModel.create({
       from,
@@ -31,5 +31,9 @@ export class QuoteService {
 
   async getQuoteById(id: string) {
     return await this.quoteModel.findById(id).exec();
+  }
+
+  async getAllQuotes() {
+    return this.quoteModel.find().exec();
   }
 }

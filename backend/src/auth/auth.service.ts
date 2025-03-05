@@ -25,4 +25,16 @@ export class AuthService {
       access_token: this.jwtService.sign(payload),
     };
   }
+
+  async registerWithToken(username: string, password: string) {
+    const newUser = await this.userService.createUser(username, password);
+
+    const payload = { username: newUser.username, sub: newUser._id };
+    const access_token = this.jwtService.sign(payload);
+
+    return {
+      access_token,
+      user: { username: newUser.username },
+    };
+  }
 }

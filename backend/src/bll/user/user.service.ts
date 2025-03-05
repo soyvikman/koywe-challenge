@@ -18,6 +18,6 @@ export class UserService {
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new this.userModel({ username, password: hashedPassword });
     await newUser.save();
-    return { username: newUser.username };
+    return newUser;
   }
 }

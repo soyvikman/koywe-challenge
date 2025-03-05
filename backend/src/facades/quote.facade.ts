@@ -43,4 +43,8 @@ export class QuoteFacade {
 
     return quote;
   }
+
+  async getAllQuotes() {
+    return this.quoteService.getAllQuotes();
+  }
 }
