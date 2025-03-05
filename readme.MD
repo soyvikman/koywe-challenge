@@ -32,12 +32,12 @@ La documentación completa de los endpoints se encuentra disponible en [Swagger]
 
 1. Clonar el repositorio.
 2. Configurar variables de entorno:
-   - En `` configurar:
+   - En `/backend/.env` configurar:
      ```
      MONGO_URI=mongodb://localhost:27017/koywe
      JWT_SECRET=mi-super-secreto
      ```
-   - En `` configurar:
+   - En `/frontend/.env` configurar:
      ```
      NEXT_PUBLIC_API_URL=http://localhost:3000
      ```
