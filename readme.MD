@@ -35,7 +35,7 @@ La documentación completa de los endpoints se encuentra disponible en [Swagger]
    - En `/backend/.env` configurar:
      ```
      MONGO_URI=mongodb://localhost:27017/koywe
-     JWT_SECRET=mi-super-secreto
+     JWT_SECRET=my-secret-key
      ```
    - En `/frontend/.env` configurar:
      ```
@@ -79,7 +79,7 @@ En este caso:
 - El frontend estará disponible en: [http://localhost:3001](http://localhost:3001)
 - MongoDB estará aislado en el contenedor `mongo`
 
-⚠️ Importante: Cuando ejecutas en Docker, **el archivo **``** debe tener**:
+⚠️ Importante: Cuando ejecutas en Docker, **el archivo **`/backend/.env`** debe tener**:
 
 ```
 MONGO_URI=mongodb://mongo:27017/koywe
