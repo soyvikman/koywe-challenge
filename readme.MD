@@ -118,6 +118,24 @@ Durante el desarrollo se utilizaron herramientas de IA para acelerar y validar a
 
 ---
 
+## Testing
+
+- El proyecto cuenta con un conjunto de pruebas unitarias e integrales que cubren más del 70% del código.
+
+- Para ejecutar las pruebas:
+
+```bash
+cd backend
+npm run test
+```
+
+Y para ver el coverage:
+
+```bash
+cd backend
+npm run test:cov
+```
+
 ## Observaciones adicionales
 
 - El sistema tiene autenticación basada en JWT.
