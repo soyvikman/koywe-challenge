@@ -1,6 +1,6 @@
 # Koywe Challenge - Technical Test
 
-Este proyecto consiste en un sistema de cotizaciones entre distintas monedas, desarrollado en NestJS y Next.js, con autenticación JWT y persistencia en MongoDB.
+Este proyecto consiste en un sistema de cotizaciones entre distintas monedas, desarrollado en NestJS y Next.js, con autenticación JWT y persistencia en MongoDB. Las rates se obtienen dinámicamente de la API sugerida (cryptomkt).
 
 ## Arquitectura
 
@@ -120,7 +120,7 @@ Durante el desarrollo se utilizaron herramientas de IA para acelerar y validar a
 
 ## Testing
 
-- El proyecto cuenta con un conjunto de pruebas unitarias e integrales que cubren más del 70% del código.
+- El proyecto cuenta con un conjunto de pruebas unitarias e integrales que cubren aproximadamente el 70% de coverage.
 
 - Para ejecutar las pruebas:
 
@@ -142,7 +142,6 @@ npm run test:cov
 - Los endpoints protegidos requieren que el token se envíe en el header `Authorization` como `Bearer <token>`.
 - El frontend detecta automáticamente si hay un token almacenado en `localStorage` para mostrar o esconder opciones en el menú.
 - Los tokens tienen una expiración configurable, pero en esta prueba el enfoque fue simplemente validarlos sin fecha de expiración para simplificar el desarrollo.
-- El frontend no tiene SSR activo, se ejecuta completamente como SPA.
 - Se siguieron prácticas de separación de capas en el backend, usando el patrón **Facade** para encapsular la lógica de negocio.
 
 ## Comentarios

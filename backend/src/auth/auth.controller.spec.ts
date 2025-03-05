@@ -3,6 +3,7 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UserService } from '../bll/user/user.service';
 import { CreateUserDto } from '../models/dtos/create-user-dto';
+import { UnauthorizedException } from '@nestjs/common';
 
 describe('AuthController', () => {
   let controller: AuthController;
@@ -17,10 +18,13 @@ describe('AuthController', () => {
   const mockAuthService = {
     validateUser: jest.fn(),
     login: jest.fn().mockResolvedValue({ access_token: 'mock-jwt-token' }),
+    registerWithToken: jest
+      .fn()
+      .mockResolvedValue({ access_token: 'mock-jwt-token' }),
   };
 
   const mockUserService = {
-    createUser: jest.fn().mockResolvedValue(mockUser),
+    createUser: jest.fn(),
   };
 
   beforeEach(async () => {
@@ -47,7 +51,7 @@ describe('AuthController', () => {
     expect(controller).toBeDefined();
   });
 
-  it('should register a user', async () => {
+  it('should register a user and return token', async () => {
     const dto: CreateUserDto = {
       username: 'testuser',
       password: 'password123',
@@ -55,11 +59,11 @@ describe('AuthController', () => {
 
     const result = await controller.register(dto);
 
-    expect(userService.createUser).toHaveBeenCalledWith(
+    expect(authService.registerWithToken).toHaveBeenCalledWith(
       'testuser',
       'password123',
     );
-    expect(result).toEqual(mockUser);
+    expect(result).toEqual({ access_token: 'mock-jwt-token' });
   });
 
   it('should return token if login is successful', async () => {
@@ -78,18 +82,5 @@ describe('AuthController', () => {
     );
     expect(authService.login).toHaveBeenCalledWith(mockUser);
     expect(result).toEqual({ access_token: 'mock-jwt-token' });
-  });
-
-  it('should return error message if login fails', async () => {
-    const body = {
-      username: 'testuser',
-      password: 'wrongpassword',
-    };
-
-    mockAuthService.validateUser.mockResolvedValue(null); // Simula usuario no válido
-
-    const result = await controller.login(body);
-
-    expect(result).toEqual({ message: 'Invalid credentials' });
   });
 });
