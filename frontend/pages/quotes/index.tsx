@@ -21,9 +21,9 @@ const QuotesPage = () => {
       const loadQuotes = async () => {
         try {
           const data = await fetchQuotes(storedToken);
-          // Ordenar las cotizaciones por fecha (las más recientes primero)
+
           const sortedQuotes = data.sort(
-            (a, b) =>
+            (a: Quote, b: Quote) =>
               new Date(b.expiresAt).getTime() - new Date(a.expiresAt).getTime()
           );
           setQuotes(sortedQuotes);
